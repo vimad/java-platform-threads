@@ -1,6 +1,9 @@
 package masteringthreads.ch2_basics_of_threads.exercise_2_1;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Objects;
+import java.util.concurrent.RejectedExecutionException;
 
 /**
  * Our first exercise is to implement a task queue using wait/notify and monitor
@@ -15,44 +18,59 @@ public class ThreadPoolImpl implements ThreadPool {
     private static final Runnable POISON_PILL = () -> {
     };
 
-    // TODO: Create a ArrayDeque field containing Runnable. This is our "tasks" queue.
-    //  Hint: Since ArrayDeque is not thread-safe, we need to synchronize it. In
-    //  this exercise, we will use monitor locks, i.e. synchronized. Use the
-    //  ArrayDeque itself as a monitor lock, e.g. synchronized(tasks) {...}
+    private final Deque<Runnable> tasks = new ArrayDeque<>();
 
     public ThreadPoolImpl(int poolSize) {
-        if (poolSize < 1) throw new IllegalArgumentException("Invalid poolSize=" + poolSize);
-        // TODO: Create as many Worker instances as poolSize and start them.
-        //  Hint: Worker is an inner class defined at the bottom of this class
+        if (poolSize < 1) {
+            throw new IllegalArgumentException("Invalid poolSize=" + poolSize);
+        }
+        for (int i = 0; i < poolSize; i++) {
+            new Worker("worker-" + i).start();
+        }
 
     }
 
     private Runnable take() throws InterruptedException {
-        // TODO: if the ArrayDeque is empty, we wait
-        //  remove the first task from the ArrayDeque
-        //   if it is the POISON_PILL, add it back into ArrayDeque
-        //  return the task
-        throw new UnsupportedOperationException("not implemented");
+        synchronized (tasks) {
+            while (tasks.isEmpty()) {
+                tasks.wait();
+            }
+            Runnable task = tasks.removeFirst();
+            if (task == POISON_PILL) {
+                tasks.addLast(task);
+            }
+            return task;
+        }
     }
 
     @Override
     public void submit(Runnable task) {
         Objects.requireNonNull(task, "task==null");
-        // TODO: If the last task in the ArrayDeque is the POISON_PILL, throw a
-        //  RejectedExecutionException, otherwise add the task and notifyAll()
+        synchronized (tasks) {
+            if (tasks.peekLast() == POISON_PILL) {
+                throw new RejectedExecutionException("Rejected");
+            }
+            tasks.addLast(task);
+            tasks.notifyAll();
+        }
     }
 
     @Override
     public int getRunQueueLength() {
-        // TODO: return the length of the ArrayDeque, excluding the POISON_PILL
-        //  remember to also synchronize!
-        throw new UnsupportedOperationException("not implemented");
+        synchronized (tasks) {
+            return (int) tasks.stream()
+                .filter(task -> task != POISON_PILL)
+                .count();
+        }
     }
 
     @Override
     public void shutdown() {
-        // TODO: If the last task in the ArrayDeque is not already the POISON_PILL,
-        //  we want to submit it
+        synchronized (tasks) {
+            if (tasks.peekLast() != POISON_PILL) {
+                submit(POISON_PILL);
+            }
+        }
     }
 
     private class Worker extends Thread {
@@ -61,9 +79,18 @@ public class ThreadPoolImpl implements ThreadPool {
         }
 
         public void run() {
-            // TODO: we run in an infinite loop:
-            //   remove the next task from the ArrayDeque using take()
-            //   if it is our POISON_PILL, we return; otherwise we call run()
+            while (true) {
+                try {
+                    Runnable task = take();
+                    if (task == POISON_PILL) {
+                        break;
+                    }
+                    task.run();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            System.out.println("Exiting thread " + getName());
         }
     }
 }
