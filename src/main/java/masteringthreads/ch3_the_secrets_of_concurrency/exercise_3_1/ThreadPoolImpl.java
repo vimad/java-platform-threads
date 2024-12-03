@@ -92,23 +92,9 @@ public class ThreadPoolImpl implements ThreadPoolEx {
      */
     @Override
     public List<Runnable> shutdownNow() {
-        tasksLock.lock();
-        try {
-            shutdown();
-            List<Runnable> unfinishedTasks = new ArrayList<>();
-            for (Iterator<Runnable> it = tasks.iterator(); it.hasNext(); ) {
-                Runnable next = it.next();
-                if (next != POISON_PILL) {
-                    unfinishedTasks.add(next);
-                    it.remove();
-                }
-            }
-            workers.forEach(Thread::interrupt);
-            return unfinishedTasks;
-        } finally {
-            tasksLock.unlock();
-        }
+        throw new UnsupportedOperationException("TODO");
     }
+
 
     private class Worker extends Thread {
         public Worker(String name) {

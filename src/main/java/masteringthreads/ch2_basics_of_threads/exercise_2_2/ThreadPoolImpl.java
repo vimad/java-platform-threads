@@ -3,9 +3,7 @@ package masteringthreads.ch2_basics_of_threads.exercise_2_2;
 import masteringthreads.ch2_basics_of_threads.exercise_2_1.ThreadPool;
 
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.locks.*;
-import java.util.function.*;
+import java.util.concurrent.RejectedExecutionException;
 
 /**
  * Our second exercise is to refactor this code to use ReentrantLock and Condition.
@@ -20,74 +18,66 @@ public class ThreadPoolImpl implements ThreadPool {
     private static final Runnable POISON_PILL = () -> {
     };
 
-    private final Lock lock = new ReentrantLock();
-    private final Condition notEmpty = lock.newCondition();
-
+    // TODO: Instead of monitor locks (synchronized), use owned locks (ReentrantLock)
+    //  for thread safety and Condition await()/signal() for inter-thread communication.
     private final Deque<Runnable> tasks = new ArrayDeque<>();
+
+    {
+        if (true)
+            throw new UnsupportedOperationException("TODO: Implement with owned locks");
+    }
 
     // This stays the same
     public ThreadPoolImpl(int poolSize) {
-        if (poolSize < 1)
-            throw new IllegalArgumentException("Invalid poolSize=" + poolSize);
+        if (poolSize < 1) throw new IllegalArgumentException("Invalid poolSize=" + poolSize);
         for (int i = 0; i < poolSize; i++) {
             var worker = new Worker("worker-" + i);
             worker.start();
         }
     }
 
-    private Runnable take() {
-        return callLocked(() -> {
-            while (tasks.isEmpty()) notEmpty.awaitUninterruptibly();
+    private Runnable take() throws InterruptedException {
+        // TODO: Replace locking with an owned lock. Remember to use
+        //  try/finally to unlock.
+        synchronized (tasks) {
+            while (tasks.isEmpty()) tasks.wait();
             Runnable task = tasks.remove();
-            if (task == POISON_PILL) {
-                tasks.add(POISON_PILL);
-                notEmpty.signal();
-            }
+            if (task == POISON_PILL) tasks.add(POISON_PILL);
             return task;
-        });
-    }
-
-    private <E> E callLocked(Supplier<E> task) {
-        lock.lock();
-        try {
-            return task.get();
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    private void callLocked(Runnable task) {
-        lock.lock();
-        try {
-            task.run();
-        } finally {
-            lock.unlock();
         }
     }
 
     @Override
     public void submit(Runnable task) {
         Objects.requireNonNull(task, "task==null");
-        callLocked(() -> {
+        // TODO: Replace locking with an owned lock. We can use signal(),
+        //  as opposed to signalAll(), for all except our POISON_PILL tasks.
+        //  Reason is that we want all our Worker threads to wake up when the
+        //  POISON_PILL is added.
+        synchronized (tasks) {
             if (tasks.peekLast() == POISON_PILL)
                 throw new RejectedExecutionException("Pool shut down");
             tasks.add(task);
-            notEmpty.signal();
-        });
+            tasks.notifyAll();
+        }
     }
 
     @Override
     public int getRunQueueLength() {
-        return callLocked(() -> (int) tasks.stream()
+        // TODO: Replace locking with an owned lock.
+        synchronized (tasks) {
+            return (int) tasks.stream()
                     .filter(task -> task != POISON_PILL)
-                    .count());
+                    .count();
+        }
     }
 
     @Override
     public void shutdown() {
-        callLocked(() -> {
+        // TODO: Replace locking with an owned lock.
+        synchronized (tasks) {
             if (tasks.peekLast() != POISON_PILL) submit(POISON_PILL);
-        });
+        }
     }
 
     // This stays the same
@@ -98,9 +88,13 @@ public class ThreadPoolImpl implements ThreadPool {
 
         public void run() {
             while (true) {
-                Runnable task = take();
-                if (task == POISON_PILL) return;
-                else task.run();
+                try {
+                    Runnable task = take();
+                    if (task == POISON_PILL) return;
+                    else task.run();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
