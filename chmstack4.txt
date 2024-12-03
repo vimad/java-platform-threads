@@ -1,0 +1,276 @@
+2024-04-25 17:33:50
+Full thread dump OpenJDK 64-Bit Server VM (25.382-b05 mixed mode):
+
+"Attach Listener" #21 daemon prio=9 os_prio=31 tid=0x0000000150082800 nid=0x7103 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"ForkJoinPool.commonPool-worker-10" #18 daemon prio=5 os_prio=31 tid=0x000000014c809800 nid=0x6303 waiting for monitor entry [0x000000016f5d2000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- locked <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-3" #20 daemon prio=5 os_prio=31 tid=0x000000014a008800 nid=0x7303 waiting for monitor entry [0x000000016f3c6000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-1" #19 daemon prio=5 os_prio=31 tid=0x000000014c808800 nid=0x7403 waiting for monitor entry [0x000000016f1ba000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-8" #17 daemon prio=5 os_prio=31 tid=0x0000000150081800 nid=0x7503 waiting for monitor entry [0x000000016efae000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-6" #16 daemon prio=5 os_prio=31 tid=0x0000000150080800 nid=0x6003 waiting for monitor entry [0x000000016eda2000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-15" #15 daemon prio=5 os_prio=31 tid=0x000000014f867000 nid=0x7703 waiting for monitor entry [0x000000016eb96000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-13" #14 daemon prio=5 os_prio=31 tid=0x000000015007f800 nid=0x7803 waiting for monitor entry [0x000000016e98a000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-4" #13 daemon prio=5 os_prio=31 tid=0x000000014f866000 nid=0x5c03 runnable [0x000000016e77e000]
+   java.lang.Thread.State: RUNNABLE
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-11" #12 daemon prio=5 os_prio=31 tid=0x000000015007f000 nid=0x7a03 waiting for monitor entry [0x000000016e572000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-2" #11 daemon prio=5 os_prio=31 tid=0x000000014d87e800 nid=0x5a03 waiting for monitor entry [0x000000016e366000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.execLocalTasks(ForkJoinPool.java:1040)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1058)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"ForkJoinPool.commonPool-worker-9" #10 daemon prio=5 os_prio=31 tid=0x000000014d877800 nid=0x5803 waiting for monitor entry [0x000000016e15a000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1674)
+	- waiting to lock <0x00000006845af8e8> (a java.util.concurrent.ConcurrentHashMap$Node)
+	at masteringthreads.playground.ComputeIfAbsentDemo.lambda$main$1(ComputeIfAbsentDemo.java:16)
+	at masteringthreads.playground.ComputeIfAbsentDemo$$Lambda$1/303563356.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:204)
+	at java.util.concurrent.ThreadLocalRandom$RandomIntsSpliterator.forEachRemaining(ThreadLocalRandom.java:839)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+"Service Thread" #9 daemon prio=9 os_prio=31 tid=0x000000014d80c000 nid=0x5603 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread3" #8 daemon prio=9 os_prio=31 tid=0x000000014e83e800 nid=0x7e03 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread2" #7 daemon prio=9 os_prio=31 tid=0x000000014d009000 nid=0x5503 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #6 daemon prio=9 os_prio=31 tid=0x000000014f02f800 nid=0x4803 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #5 daemon prio=9 os_prio=31 tid=0x0000000150013800 nid=0x4b03 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=31 tid=0x0000000149813800 nid=0x4703 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=31 tid=0x000000014e83d800 nid=0x4103 in Object.wait() [0x000000016cfe2000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x0000000680808f08> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	- locked <0x0000000680808f08> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:188)
+
+"Reference Handler" #2 daemon prio=10 os_prio=31 tid=0x000000014e83a800 nid=0x3503 in Object.wait() [0x000000016cdd6000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x0000000680806ba0> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	- locked <0x0000000680806ba0> (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+"main" #1 prio=5 os_prio=31 tid=0x000000014f009000 nid=0x1503 in Object.wait() [0x000000016b546000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000006809cc470> (a java.util.stream.ForEachOps$ForEachTask)
+	at java.util.concurrent.ForkJoinTask.externalAwaitDone(ForkJoinTask.java:334)
+	- locked <0x00000006809cc470> (a java.util.stream.ForEachOps$ForEachTask)
+	at java.util.concurrent.ForkJoinTask.doInvoke(ForkJoinTask.java:405)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:734)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:159)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:188)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:427)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:584)
+	at masteringthreads.playground.ComputeIfAbsentDemo.main(ComputeIfAbsentDemo.java:15)
+
+"VM Thread" os_prio=31 tid=0x000000014e836000 nid=0x3303 runnable 
+
+"ParGC Thread#0" os_prio=31 tid=0x000000014e80a000 nid=0x2703 runnable 
+
+"ParGC Thread#1" os_prio=31 tid=0x000000014d808800 nid=0x2b03 runnable 
+
+"ParGC Thread#2" os_prio=31 tid=0x000000014d80d000 nid=0x3f03 runnable 
+
+"ParGC Thread#3" os_prio=31 tid=0x000000014d80e000 nid=0x2d03 runnable 
+
+"ParGC Thread#4" os_prio=31 tid=0x000000014d80e800 nid=0x3c03 runnable 
+
+"ParGC Thread#5" os_prio=31 tid=0x000000014f009800 nid=0x3a03 runnable 
+
+"ParGC Thread#6" os_prio=31 tid=0x000000014f00a800 nid=0x2e03 runnable 
+
+"ParGC Thread#7" os_prio=31 tid=0x000000014f013800 nid=0x3803 runnable 
+
+"ParGC Thread#8" os_prio=31 tid=0x000000014f014000 nid=0x3103 runnable 
+
+"ParGC Thread#9" os_prio=31 tid=0x000000014f015000 nid=0x3703 runnable 
+
+"VM Periodic Task Thread" os_prio=31 tid=0x0000000150062000 nid=0x5703 waiting on condition 
+
+JNI global references: 317
+
