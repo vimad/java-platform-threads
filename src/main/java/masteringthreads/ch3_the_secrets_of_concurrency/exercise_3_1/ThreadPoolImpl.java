@@ -92,7 +92,18 @@ public class ThreadPoolImpl implements ThreadPoolEx {
      */
     @Override
     public List<Runnable> shutdownNow() {
-        throw new UnsupportedOperationException("TODO");
+        tasksLock.lock();
+        try {
+            List<Runnable> unstartedTasks = tasks.stream()
+                .filter(task -> task != POISON_PILL)
+                .toList();
+            tasks.removeIf(task -> task != POISON_PILL);
+            if (tasks.isEmpty()) submit(POISON_PILL);
+            workers.forEach(Thread::interrupt);
+            return unstartedTasks;
+        } finally {
+            tasksLock.unlock();
+        }
     }
 
 
