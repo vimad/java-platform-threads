@@ -1,5 +1,10 @@
 package masteringthreads.ch3_the_secrets_of_concurrency.exercise_3_2;
 
+import masteringthreads.ch3_the_secrets_of_concurrency.solution_3_2.BankAccount;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class BankAccountTest {
     public static void main(String... args) {
         // create a BankAccount instance with balance = 1000
@@ -13,5 +18,24 @@ public class BankAccountTest {
         // out the balance
         //
         // Balance should be 1000, 1100 or 1200, nothing else
+        var account = new BankAccount(1000);
+        Runnable depositWithdraw = () -> {
+            while (true) {
+                account.deposit(100);
+                account.withdraw(100);
+            }
+        };
+
+        var thread1 = Thread.ofPlatform().start(depositWithdraw);
+        var thread2 = Thread.ofPlatform().start(depositWithdraw);
+
+        var timer = new Timer();
+        timer.schedule(
+            new TimerTask() {
+                public void run() {
+                    System.out.println("account.getBalance() = " + account.getBalance());
+                }
+            }, 1000, 1000
+        );
     }
 }
